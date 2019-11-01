@@ -4,6 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef vector< vector<int> > VECVECINT;
 typedef vector<int> VECINT;
 typedef queue<int> QUEINT;
 typedef stack<int> STKINT;
