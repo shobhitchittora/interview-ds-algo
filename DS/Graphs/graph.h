@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef vector< vector<int> > VECVECINT;
+typedef vector<vector<int> > VECVECINT;
 typedef vector<int> VECINT;
 typedef queue<int> QUEINT;
 typedef stack<int> STKINT;
@@ -155,18 +155,35 @@ public:
     printVec(dfs(root, visited));
   }
 
-  STKINT dfsStack(int root)
+  STKINT dfsStack(int root, bool checkAll = false)
   {
     VECINT visited(this->vertices, 0);
     STKINT stk;
-    dfsUtilStk(root, visited, stk);
+
+    if (checkAll)
+    {
+      for (int i = 0; i < this->vertices; i++)
+      {
+        dfsUtilStk(i, visited, stk);
+      }
+    }
+    else
+    {
+      dfsUtilStk(root, visited, stk);
+    }
 
     return stk;
   }
 
   void dfsUtilStk(int root, VECINT &visited, STKINT &stk)
   {
-    visited[root] = 1;
+
+    bool wasVisited = false;
+    if (visited[root] == 0)
+    {
+      visited[root] = 1;
+      wasVisited = true;
+    }
 
     for (VECINT::iterator it = this->graph[root].begin(); it != this->graph[root].end(); it++)
     {
@@ -176,7 +193,10 @@ public:
       }
     }
 
-    stk.push(root);
+    if (wasVisited)
+    {
+      stk.push(root);
+    }
   }
 };
 
