@@ -15,13 +15,13 @@ class Graph
 public:
   int vertices;
   bool isDirected;
-  vector<int> *graph;
+  VECINT *graph;
 
   Graph(int vertices, bool isDirected = false)
   {
     this->vertices = vertices;
     this->isDirected = isDirected;
-    graph = new vector<int>[vertices];
+    graph = new VECINT[vertices];
   }
 
   void addEdge(int a, int b)
